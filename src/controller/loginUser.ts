@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { users } from "./../utils/inMemoryStore"
+import { users } from "../utils/inMemoryStore"
 import { generateToken } from "../utils/generateToken"
 
 export async function loginUser(req: Request, res: Response) {
@@ -12,7 +12,7 @@ export async function loginUser(req: Request, res: Response) {
     }
 
     const token = generateToken(username)
-    res.json({ username: user.username, token: token })
+    res.status(200).json({ username: user.username, token: token })
   } catch (err) {
     return res.status(500).send("Server error")
   }

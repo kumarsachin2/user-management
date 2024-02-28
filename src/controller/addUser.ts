@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { users } from "./../utils/inMemoryStore"
+import { users } from "../utils/inMemoryStore"
 
 // Endpoint to create a new user
 export async function addUser(req: Request, res: Response) {

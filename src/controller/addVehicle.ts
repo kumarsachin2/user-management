@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { users } from "../utils/inMemoryStore"
-import { generateRandomString } from "../utils/generateRandomNumber"
+import { generateRandomString } from "../utils/generateRandomString"
 import { VehicleDataType } from "../models/userVehicleTypes"
 
 // Endpoint to save a vehicle for the authenticated user

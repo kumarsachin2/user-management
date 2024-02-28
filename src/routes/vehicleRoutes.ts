@@ -1,6 +1,6 @@
 import express from "express"
 import { addVehicle } from "../controller/addVehicle"
-import { verifyUserToken } from "../middleware/verlifyUserToken"
+import { verifyUserToken } from "../middleware/verifyUserToken"
 import { getVehicles } from "../controller/getVehicles"
 import { updateVehicle } from "../controller/updateVehicle"
 
