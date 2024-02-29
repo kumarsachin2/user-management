@@ -39,7 +39,6 @@
 #### Error Response
 
 - **Status Code:** 400
-- **Content:**
 
 ```json
 {
@@ -60,7 +59,30 @@
 | `username` | `string` | **Required** |
 | `password` | `string` | **Required** |
 
-## 3. [Add a authenticated users favorite vehichle 🌁](#)
+### Responses
+
+#### Success Response
+
+- **Status Code:** 201
+
+```json
+{
+  "userName": "username",
+  "token": "token"
+}
+```
+
+#### Error Response
+
+- **Status Code:** 401
+
+```json
+{
+    "error": "Invalid username or password"
+}
+```
+
+## 3. [Add an authenticated user favorite vehichle 🌁](#)
 
 - Related file: `src\controller\addVehicle.ts`
 
@@ -76,7 +98,49 @@
 | `model` | `string` | **Required** |
 | `year`  | `number` | **Required** |
 
-## 4. [Get all the added vehichles of a authenticated users 🌁](#)
+### Responses
+
+#### Success Response
+
+- **Status Code:** 201
+
+```json
+{
+    "userName": "username",
+    "userVehicles": [
+        {
+            "id": "id",
+            "make": "make",
+            "model": "model",
+            "year": year
+        }
+    ],
+    "message": "Vehicle saved successfully"
+}
+```
+
+#### Unauthorized Error Response
+
+- **Status Code:** 401
+
+```json
+{
+    "error": "Unauthorized: Invalid token"
+}
+```
+
+#### If any of the required fields is/are missing
+
+- **Status Code:** 400
+
+```json
+{
+    "error": "Make, model, and year are required"
+}
+```
+
+
+## 4. [Get all the added vehicles of authenticated users 🌁](#)
 
 - Related file: `src\controller\getVehicles.ts`
 
@@ -86,7 +150,37 @@
 
 - Add a JWT token in the postman via selecting `Authorization`-> Select `Type` as `Bearer Token` and add the token to the field obtained in response after login.
 
-## 5. [Update a authenticated users favorite vehichle 🌁](#)
+### Responses
+
+#### Success Response
+
+- **Status Code:** 201
+
+```json
+{
+    "userName": "username",
+    "userVehicles": [
+        {
+            "id": "id",
+            "make": "make",
+            "model": "model",
+            "year": year
+        }
+    ],
+}
+```
+
+#### Unauthorized Error Response
+
+- **Status Code:** 401
+
+```json
+{
+    "error": "Unauthorized: Invalid token"
+}
+```
+
+## 5. [Update an authenticated users favorite vehichle 🌁](#)
 
 - Related file: `src\controller\updateVehicle.ts`
 
@@ -94,12 +188,62 @@
   PUT `http://localhost:5000/vehicle/:id`
 ```
 
-- Add vehichle in the param, for example `http://localhost:5000/vehicle/D0UcvFPo`
+- Add vehicle in the param, for example, `http://localhost:5000/vehicle/D0UcvFPo`
 - Add a JWT token in the postman via selecting `Authorization`-> Select `Type` as `Bearer Token` and add the token to the field obtained in response after login.
-- There should be at least one of "make", "model", or "year" has to be provided
+- There should be at least one "make", "model", or "year" has to be provided
 
 | Body    | Type     | Description  |
 | :------ | :------- | :----------- |
 | `make`  | `string` | **Optional** |
 | `model` | `string` | **Optional** |
 | `year`  | `number` | **Optional** |
+
+### Responses
+
+#### Success Response
+
+- **Status Code:** 201
+
+```json
+{
+    "userName": "username",
+    "userVehicles": [
+        {
+            "id": "id",
+            "make": "make",
+            "model": "model",
+            "year": year
+        }
+    ],
+    "message": "Vehicle data updated successfully"
+}
+```
+
+#### Unauthorized Error Response
+
+- **Status Code:** 401
+
+```json
+{
+    "error": "Unauthorized: Invalid token"
+}
+```
+
+#### If the wrong vehicle `id` is passed
+
+- **Status Code:** 400
+
+```json
+{
+    "error": "Vehicle not found"
+}
+```
+#### If none of the `make`, `model`, or `year` is provided
+
+- **Status Code:** 400
+
+```json
+{
+    "error": "At least one of make, model, or year must be provided"
+}
+```
