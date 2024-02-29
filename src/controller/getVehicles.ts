@@ -11,7 +11,7 @@ export async function getVehicles(req: Request, res: Response) {
     if (!user) {
       return res.status(404).json({ error: "User not found" })
     }
-    res.json({ userName: user.username, userVehicle: user.vehicles })
+    res.json({ userName: user.username, userVehicles: user.vehicles })
   } catch (err) {
     return res.status(500).send("Server error")
   }

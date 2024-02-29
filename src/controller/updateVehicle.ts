@@ -36,7 +36,7 @@ export async function updateVehicle(req: Request, res: Response) {
 
     res.json({
       userName: user.username,
-      vehicles: user.vehicles,
+      userVehicles: user.vehicles,
       message: "Vehicle data updated successfully",
     })
   } catch (err) {

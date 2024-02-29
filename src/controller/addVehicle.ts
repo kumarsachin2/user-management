@@ -28,7 +28,7 @@ export async function addVehicle(req: Request, res: Response) {
 
     res.status(201).json({
       userName: username,
-      vehicles: user.vehicles,
+      userVehicles: user.vehicles,
       message: "Vehicle saved successfully",
     })
   } catch (err) {

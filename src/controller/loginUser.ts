@@ -12,7 +12,7 @@ export async function loginUser(req: Request, res: Response) {
     }
 
     const token = generateToken(username)
-    res.status(200).json({ username: user.username, token: token })
+    res.status(200).json({ userName: user.username, token: token })
   } catch (err) {
     return res.status(500).send("Server error")
   }
