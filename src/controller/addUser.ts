@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { users } from "../utils/inMemoryStore"
 import { AddUserSchemaI } from "../zodInputValidation/addUserSchema"
+import { serverErrorMsg } from "../utils/serverMsg"
 
 // Endpoint to create a new user
 export async function addUser(req: Request<AddUserSchemaI>, res: Response) {
@@ -15,6 +16,6 @@ export async function addUser(req: Request<AddUserSchemaI>, res: Response) {
       .status(201)
       .json({ userName: username, message: "User created successfully" })
   } catch (err) {
-    return res.status(500).send("Server error")
+    return res.status(500).send(serverErrorMsg)
   }
 }

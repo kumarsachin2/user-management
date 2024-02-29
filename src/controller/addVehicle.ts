@@ -3,6 +3,7 @@ import { users } from "../utils/inMemoryStore"
 import { generateRandomString } from "../utils/generateRandomString"
 import { VehicleDataType } from "../models/userVehicleTypes"
 import { AddVehicleSchemaI } from "../zodInputValidation/addVehicleSchema"
+import { serverErrorMsg, userNotFoundMsg } from "../utils/serverMsg"
 
 // Endpoint to save a vehicle for the authenticated user
 export async function addVehicle(
@@ -15,7 +16,7 @@ export async function addVehicle(
     const user = users[username]
 
     if (!user) {
-      return res.status(404).json({ error: "User not found" })
+      return res.status(404).json(userNotFoundMsg)
     }
     const { make, model, year } = req.body
     if (!make || !model || !year) {
@@ -36,6 +37,6 @@ export async function addVehicle(
       message: "Vehicle saved successfully",
     })
   } catch (err) {
-    return res.status(500).send("Server error")
+    return res.status(500).send(serverErrorMsg)
   }
 }

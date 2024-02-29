@@ -4,6 +4,7 @@ import {
   UpdateVehicleSchemaI,
   UpdateVehicleIdParamI,
 } from "../zodInputValidation/updateVehicleSchema"
+import { serverErrorMsg, userNotFoundMsg } from "../utils/serverMsg"
 
 // Endpoint to update a vehicle for the authenticated user
 export async function updateVehicle(
@@ -23,7 +24,7 @@ export async function updateVehicle(
     const user = users[username]
 
     if (!user) {
-      return res.status(404).json({ error: "User not found" })
+      return res.status(404).json(userNotFoundMsg)
     }
 
     const vehicleIndex =
@@ -53,6 +54,6 @@ export async function updateVehicle(
       message: "Vehicle data updated successfully",
     })
   } catch (err) {
-    return res.status(500).send("Server error")
+    return res.status(500).send(serverErrorMsg)
   }
 }
