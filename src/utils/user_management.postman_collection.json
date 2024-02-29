@@ -1,0 +1,475 @@
+{
+	"info": {
+		"_postman_id": "c7d121ff-1fe3-4928-8df4-92d0eca65053",
+		"name": "user_management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8150618"
+	},
+	"item": [
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\" : \"AUniqueUsr\",\n\t\"password\" : \"qweerAtw1Q@\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"add"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email_address\" : \"ggg@gmail.ggg\",\n\t\"password\" : \"ff\"\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8060/loginEmployee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8060",
+							"path": [
+								"loginEmployee"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "58"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3a-WeP97kBp9f1xDqnyJGmBbwHrr4c\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 09 Jul 2019 11:09:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 204,\n    \"success\": \"Email and password does not match\"\n}"
+				},
+				{
+					"name": "/signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"first_name\" : \"ghgdhgjfghfhghjfhg\",\n\t\"last_name\" : \"rfvbghn\",\n\t\"email_address\" : \"artswfhfhddfdtsrd@fgm.com\",\n\t\"password\" : \"qwe#1W\",\n\t\"device_id\" : \"12rstdfgfhfdbgfhghsdfs\",\n\t\"device_type\" : 1,\n\t\"device_token\" : \"qwse1fcsfgdgfddgdfgtrf1567fds\"\n\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8070/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "163"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a3-UPrkcosfdIG3zTNaIDs5tGZpIeo\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Jul 2019 06:29:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"session_id\": \"4e1a9c59-c2f8-435b-b2da-47070e444ca1\",\n        \"id\": 45,\n        \"first_name\": \"ghgdhgjfghfhghjfhg\",\n        \"last_name\": \"rfvbghn\",\n        \"email_address\": \"artswfhfhddfdtsrd@fgm.com\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "user Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\" : \"AUniqueUsr\",\r\n\t\"password\" : \"qweerAtw1Q@\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/specificEmployee",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/specificEmployee/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"specificEmployee",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Jul 2019 13:15:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"first_name\":\"eee\"}]"
+				}
+			]
+		},
+		{
+			"name": "vehicles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"make\" : \"Make 3\",\r\n    \"model\": \"c123 3\",\r\n    \"year\": 3000\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/vehicle/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"vehicle",
+						"add"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/specificEmployee",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/specificEmployee/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"specificEmployee",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Jul 2019 13:15:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"first_name\":\"eee\"}]"
+				}
+			]
+		},
+		{
+			"name": "vehicles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/vehicle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"vehicle"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/specificEmployee",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/specificEmployee/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"specificEmployee",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Jul 2019 13:15:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"first_name\":\"eee\"}]"
+				}
+			]
+		},
+		{
+			"name": "vehicles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"make\": \"MOne\",\r\n    \"model\": \"v1020\",\r\n    \"year\": 9090\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/vehicle/8Fy76tZM",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"vehicle",
+						"8Fy76tZM"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/specificEmployee",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/specificEmployee/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"specificEmployee",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Jul 2019 13:15:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"first_name\":\"eee\"}]"
+				}
+			]
+		}
+	]
+}
