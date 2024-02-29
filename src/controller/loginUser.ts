@@ -1,8 +1,9 @@
 import { Request, Response } from "express"
 import { users } from "../utils/inMemoryStore"
 import { generateToken } from "../utils/generateToken"
+import { LoginUserSchemaI } from "../zodInputValidation/loginUserSchema"
 
-export async function loginUser(req: Request, res: Response) {
+export async function loginUser(req: Request<LoginUserSchemaI>, res: Response) {
   try {
     const { username, password } = req.body
 

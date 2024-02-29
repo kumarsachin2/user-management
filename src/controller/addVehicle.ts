@@ -2,9 +2,13 @@ import { Request, Response } from "express"
 import { users } from "../utils/inMemoryStore"
 import { generateRandomString } from "../utils/generateRandomString"
 import { VehicleDataType } from "../models/userVehicleTypes"
+import { AddVehicleSchemaI } from "../zodInputValidation/addVehicleSchema"
 
 // Endpoint to save a vehicle for the authenticated user
-export async function addVehicle(req: Request, res: Response) {
+export async function addVehicle(
+  req: Request<{}, {}, AddVehicleSchemaI>,
+  res: Response
+) {
   try {
     const username = req.body.username
 

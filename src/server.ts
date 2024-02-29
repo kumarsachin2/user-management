@@ -1,11 +1,12 @@
 import express, { NextFunction, Request, Response } from "express"
 import bodyParser from "body-parser"
-import jwt from "jsonwebtoken"
 import userRoutes from "./routes/userRoutes"
 import vehicleRoutes from "./routes/vehicleRoutes"
 
 const app = express()
 const port = 5000
+
+app.use(bodyParser.json())
 
 // Middleware for logging incoming requests
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -21,8 +22,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   )
   next()
 })
-
-app.use(bodyParser.json())
 
 app.use("/user", userRoutes)
 app.use("/vehicle", vehicleRoutes)

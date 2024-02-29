@@ -1,12 +1,24 @@
 import { Request, Response } from "express"
 import { users } from "../utils/inMemoryStore"
+import {
+  UpdateVehicleSchemaI,
+  UpdateVehicleIdParamI,
+} from "../zodInputValidation/updateVehicleSchema"
 
 // Endpoint to update a vehicle for the authenticated user
-export async function updateVehicle(req: Request, res: Response) {
+export async function updateVehicle(
+  req: Request<UpdateVehicleIdParamI, UpdateVehicleSchemaI>,
+  res: Response
+) {
+  const { id } = req.params
+
+  if (!id) {
+    return res.status(400).json({ error: "Vehicle id is missing" })
+  }
+
   try {
     const username = req.body.username
     const { make, model, year } = req.body
-    const vehicleId = req.params.id
 
     const user = users[username]
 
@@ -15,8 +27,7 @@ export async function updateVehicle(req: Request, res: Response) {
     }
 
     const vehicleIndex =
-      user.vehicles &&
-      user.vehicles.findIndex((vehicle) => vehicle.id === vehicleId)
+      user.vehicles && user.vehicles.findIndex((vehicle) => vehicle.id === id)
 
     if (vehicleIndex === -1) {
       return res.status(400).json({ error: "Vehicle not found" })

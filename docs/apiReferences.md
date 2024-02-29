@@ -15,7 +15,7 @@
 
 ### Responses
 
-#### Success Response
+#### Success response
 
 - **Status Code:** 201
 
@@ -36,13 +36,80 @@
 }
 ```
 
-#### Error Response
+#### Error response when "username" is missing
 
 - **Status Code:** 400
 
 ```json
 {
-  "error": "Username and password are required"
+  "issues": [
+    {
+      "code": "invalid_type",
+      "expected": "string",
+      "received": "undefined",
+      "path": ["username"],
+      "message": "Required"
+    }
+  ],
+  "name": "ZodError"
+}
+```
+
+#### Error response when "password" is missing
+
+- **Status Code:** 400
+
+```json
+{
+  "issues": [
+    {
+      "code": "invalid_type",
+      "expected": "string",
+      "received": "undefined",
+      "path": ["password"],
+      "message": "Required"
+    }
+  ],
+  "name": "ZodError"
+}
+```
+
+#### Error response when password criteria does not match (Atleast -> 8 characters, one uppercase, one lowercase, one special character, one number )
+
+- **Status Code:** 400
+
+```json
+{
+  "issues": [
+    {
+      "code": "too_small",
+      "minimum": 8,
+      "type": "string",
+      "inclusive": true,
+      "exact": false,
+      "message": "Password must be at least 8 characters long",
+      "path": ["password"]
+    },
+    {
+      "validation": "regex",
+      "code": "invalid_string",
+      "message": "Password must contain at least one uppercase letter",
+      "path": ["password"]
+    },
+    {
+      "validation": "regex",
+      "code": "invalid_string",
+      "message": "Password must contain at least one digit",
+      "path": ["password"]
+    },
+    {
+      "validation": "regex",
+      "code": "invalid_string",
+      "message": "Password must contain at least one special character",
+      "path": ["password"]
+    }
+  ],
+  "name": "ZodError"
 }
 ```
 
@@ -61,7 +128,7 @@
 
 ### Responses
 
-#### Success Response
+#### Success response
 
 - **Status Code:** 201
 
@@ -72,13 +139,51 @@
 }
 ```
 
-#### Error Response
+#### Error response
 
 - **Status Code:** 401
 
 ```json
 {
-    "error": "Invalid username or password"
+  "error": "Invalid username or password"
+}
+```
+
+#### Error response when "username" is missing
+
+- **Status Code:** 400
+
+```json
+{
+  "issues": [
+    {
+      "code": "invalid_type",
+      "expected": "string",
+      "received": "undefined",
+      "path": ["username"],
+      "message": "Required"
+    }
+  ],
+  "name": "ZodError"
+}
+```
+
+#### Error response when "password" is missing
+
+- **Status Code:** 400
+
+```json
+{
+  "issues": [
+    {
+      "code": "invalid_type",
+      "expected": "string",
+      "received": "undefined",
+      "path": ["password"],
+      "message": "Required"
+    }
+  ],
+  "name": "ZodError"
 }
 ```
 
@@ -125,20 +230,30 @@
 
 ```json
 {
-    "error": "Unauthorized: Invalid token"
+  "error": "Unauthorized: Invalid token"
 }
 ```
 
-#### If any of the required fields is/are missing
+#### If any of the required (make, model, year) fields is/are missing
 
 - **Status Code:** 400
 
 ```json
 {
-    "error": "Make, model, and year are required"
+  "issues": [
+    {
+      "code": "invalid_type",
+      "expected": "string", // "number" in case of "year"
+      "received": "undefined",
+      "path": [
+        "path" // make, model or year
+      ],
+      "message": "Required"
+    }
+  ],
+  "name": "ZodError"
 }
 ```
-
 
 ## 4. [Get all the added vehicles of authenticated users 🌁](#)
 
@@ -176,7 +291,7 @@
 
 ```json
 {
-    "error": "Unauthorized: Invalid token"
+  "error": "Unauthorized: Invalid token"
 }
 ```
 
@@ -185,7 +300,7 @@
 - Related file: `src\controller\updateVehicle.ts`
 
 ```http
-  PUT `http://localhost:5000/vehicle/:id`
+  PATCH `http://localhost:5000/vehicle/:id`
 ```
 
 - Add vehicle in the param, for example, `http://localhost:5000/vehicle/D0UcvFPo`
@@ -225,7 +340,7 @@
 
 ```json
 {
-    "error": "Unauthorized: Invalid token"
+  "error": "Unauthorized: Invalid token"
 }
 ```
 
@@ -235,15 +350,16 @@
 
 ```json
 {
-    "error": "Vehicle not found"
+  "error": "Vehicle not found"
 }
 ```
+
 #### If none of the `make`, `model`, or `year` is provided
 
 - **Status Code:** 400
 
 ```json
 {
-    "error": "At least one of make, model, or year must be provided"
+  "error": "At least one of make, model, or year must be provided"
 }
 ```
