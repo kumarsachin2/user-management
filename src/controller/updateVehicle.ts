@@ -6,7 +6,7 @@ export async function updateVehicle(req: Request, res: Response) {
   try {
     const username = req.body.username
     const { make, model, year } = req.body
-    const id = req.params.id
+    const vehicleId = req.params.id
 
     const user = users[username]
 
@@ -15,9 +15,8 @@ export async function updateVehicle(req: Request, res: Response) {
     }
 
     const vehicleIndex =
-      (user.vehicles &&
-        user.vehicles.findIndex((vehicle) => vehicle.id === id)) ||
-      -1
+      user.vehicles &&
+      user.vehicles.findIndex((vehicle) => vehicle.id === vehicleId)
 
     if (vehicleIndex === -1) {
       return res.status(400).json({ error: "Vehicle not found" })
@@ -28,11 +27,14 @@ export async function updateVehicle(req: Request, res: Response) {
         error: "At least one of make, model, or year must be provided",
       })
     }
-    if (make && user?.vehicles) user.vehicles[vehicleIndex].make = make
 
-    if (model && user?.vehicles) user.vehicles[vehicleIndex].model = model
+    if (user?.vehicles && vehicleIndex !== undefined) {
+      if (make) user.vehicles[vehicleIndex].make = make
 
-    if (year && user?.vehicles) user.vehicles[vehicleIndex].year = year
+      if (model) user.vehicles[vehicleIndex].model = model
+
+      if (year) user.vehicles[vehicleIndex].year = year
+    }
 
     res.json({
       userName: user.username,
