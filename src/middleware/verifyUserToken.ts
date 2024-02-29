@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from "express"
 import jwt from "jsonwebtoken"
+import { config } from "../config"
 
 // Middleware to verify JWT token
-const secretKey = "your_secret_key" //ToDo
+
 export function verifyUserToken(
   req: Request,
   res: Response,
@@ -12,7 +13,7 @@ export function verifyUserToken(
   if (!token) {
     return res.status(401).json({ error: "Unauthorized: Missing token" })
   }
-  jwt.verify(token, secretKey, (err: any, decoded: any) => {
+  jwt.verify(token, config.secret, (err: any, decoded: any) => {
     if (err) {
       return res.status(401).json({ error: "Unauthorized: Invalid token" })
     }

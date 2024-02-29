@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken"
+import { config } from "../config"
 
 // Function to generate JWT token
-const secretKey = "your_secret_key" //ToDo
+
 export function generateToken(username: string) {
-  return jwt.sign({ username }, secretKey, { expiresIn: "1h" })
+  return jwt.sign({ username }, config.secret, { expiresIn: "1h" })
 }
